@@ -61,8 +61,6 @@ export default {
 
 <style scoped lang="scss">
 .todo {
-  & {
-    width: 100%;
-  }
+  width: 100%;
 }
 </style>

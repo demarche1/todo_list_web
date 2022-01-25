@@ -16,16 +16,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.base_component {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5rem;
-  padding: 1.5rem;
-
-  border: 1px solid rgba(155, 139, 139, 0.3);
-  border-radius: 5px;
-}
-</style>
