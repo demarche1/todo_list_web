@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import Todo from "@/components/Todo.vue";
-import BaseComponent from "@/components/BaseComponent.vue";
+import Todo from "@/components/Todo/Todo.vue";
+import BaseComponent from "@/components/UI/BaseComponent.vue";
 
 export default {
   name: "Home",

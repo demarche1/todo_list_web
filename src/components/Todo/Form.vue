@@ -1,17 +1,17 @@
 <template>
   <form @submit.prevent="$emit('submit', todo)">
-    <input
-      placeholder="Digite sua tarefa"
-      type="text"
-      v-model="todo.title"
-      required
-    />
+    <todo-input placeholder="Digite sua terefa" :value="todo" vModel="title" />
     <button type="submit">Criar tarefa</button>
   </form>
 </template>
 
 <script>
+import TodoInput from "@/components/Shared/Input.vue";
+
 export default {
+  components: {
+    TodoInput,
+  },
   data() {
     return {
       todo: {
@@ -40,20 +40,6 @@ form {
 
     &:hover {
       background-color: #1b5cdc;
-    }
-  }
-
-  input {
-    background: transparent;
-    width: calc(100% - 1.3rem);
-    border: 1px solid #999fc6;
-    border-radius: 1rem;
-    padding: 0.6rem;
-    outline: none;
-    color: #e1e8ef;
-
-    &::placeholder {
-      color: #999fc6;
     }
   }
 }
