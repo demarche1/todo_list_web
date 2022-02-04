@@ -1,5 +1,6 @@
 <template>
   <div class="todo">
+    <todo-title>Lansa a braba</todo-title>
     <Form @submit="createTodo" />
     <List
       :todos="todos"
@@ -8,13 +9,15 @@
       @toggleModal="toggleModal"
       @todoToEdit="setTodoEdit"
     />
-    <base-modal v-show="showModal" @toggleModal="toggleModal">
-      <todo-modal
-        :todo="todoEdit"
-        @saveTodo="saveTodo"
-        @toggleModal="toggleModal"
-      />
-    </base-modal>
+    <transition name="fade">
+      <base-modal v-show="showModal" @toggleModal="toggleModal">
+        <todo-modal
+          :todo="todoEdit"
+          @saveTodo="saveTodo"
+          @toggleModal="toggleModal"
+        />
+      </base-modal>
+    </transition>
   </div>
 </template>
 
@@ -23,6 +26,7 @@ import api from "@/utils/api";
 import List from "@/components/Todo/List.vue";
 import Form from "@/components/Todo/Form.vue";
 import TodoModal from "@/components/Todo/Modal.vue";
+import TodoTitle from "@/components/Shared/Title.vue";
 import BaseModal from "@/components/UI/BaseModal.vue";
 
 export default {
@@ -39,10 +43,11 @@ export default {
     Form,
     BaseModal,
     TodoModal,
+    TodoTitle,
   },
   methods: {
     /**
-     * @typedef todo
+     * @typedef { Object } todo
      * @property { number } id
      * @property { string } title
      * @property { boolean } completed
@@ -71,7 +76,6 @@ export default {
      * @param { todo } todo
      */
     async saveTodo(todo) {
-      console.log("trigguei", todo);
       await api(`/${todo.id}`, "PUT", todo);
     },
     /**
@@ -105,5 +109,14 @@ export default {
 <style scoped lang="scss">
 .todo {
   width: 100%;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

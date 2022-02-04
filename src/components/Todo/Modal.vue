@@ -1,15 +1,17 @@
 <template>
   <div>
-    <h2>Editar Tarefa</h2>
+    <modal-title>Editar Tarefa</modal-title>
     <form @submit.prevent="onTodoSaved(todo)">
-      <todo-input :value="todo" vModel="title" />
-      <button type="submit">Salvar</button>
+      <modal-input :value="todo.title" @update="update" />
+      <modal-button type="submit">Salvar</modal-button>
     </form>
   </div>
 </template>
 
 <script>
-import TodoInput from "@/components/Shared/Input.vue";
+import ModalInput from "@/components/Shared/Input.vue";
+import ModalButton from "@/components/Shared/Button.vue";
+import ModalTitle from "@/components/Shared/Title.vue";
 
 export default {
   name: "TodoModal",
@@ -20,19 +22,28 @@ export default {
     },
   },
   components: {
-    TodoInput,
+    ModalInput,
+    ModalButton,
+    ModalTitle,
   },
   methods: {
+    /**
+     * Emits events to save and hidden or show modal.
+     *
+     * @param { todo } todo
+     */
     onTodoSaved(todo) {
       this.$emit("saveTodo", todo);
       this.$emit("toggleModal");
     },
+    /**
+     * Update value of input.
+     *
+     * @param { string } value
+     */
+    update(value) {
+      this.todo.title = value;
+    },
   },
 };
 </script>
-
-<style scoped>
-h2 {
-  text-align: center;
-}
-</style>

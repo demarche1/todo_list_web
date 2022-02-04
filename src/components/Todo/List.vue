@@ -13,6 +13,11 @@
             @click="$emit('destroy', todo.id)"
             src="https://img.icons8.com/fluency/48/000000/filled-trash.png"
           />
+          <img
+            @click="isOpen = !isOpen"
+            :class="['description', { open: isOpen }]"
+            src="https://img.icons8.com/color/48/000000/expand-arrow--v1.png"
+          />
         </div>
       </li>
     </ul>
@@ -21,6 +26,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
   props: {
     todos: {
       type: Array,
@@ -56,6 +66,7 @@ export default {
       list-style: none;
       color: #8b98a8;
       margin-top: 10px;
+      position: relative;
 
       display: flex;
       justify-content: space-between;
@@ -88,6 +99,21 @@ export default {
           height: 24px;
           cursor: pointer;
         }
+      }
+
+      .description {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 90px;
+
+        transform: translateY(-50%) rotate(0deg);
+
+        transition: all 0.4s linear;
+      }
+
+      .description.open {
+        transform: translateY(-50%) rotate(180deg);
       }
     }
   }

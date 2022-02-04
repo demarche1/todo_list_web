@@ -1,10 +1,10 @@
 <template>
   <input
+    required
     :placeholder="placeholder"
     :type="type"
-    required
-    v-model="value[vModel]"
-    @input="handleInput"
+    :value="value"
+    @input="$emit('update', $event.target.value)"
   />
 </template>
 
@@ -23,20 +23,9 @@ export default {
       default: () => "text",
     },
     value: {
-      type: Object,
-    },
-    vModel: {
-      type: String,
-    },
-  },
-  data() {
-    return {
-      content: this.value,
-    };
-  },
-  methods: {
-    handleInput() {
-      this.$emit("input", this.value);
+      type: [String, Number],
+      required: true,
+      default: () => "",
     },
   },
 };

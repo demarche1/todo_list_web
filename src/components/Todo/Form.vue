@@ -1,16 +1,22 @@
 <template>
   <form @submit.prevent="$emit('submit', todo)">
-    <todo-input placeholder="Digite sua terefa" :value="todo" vModel="title" />
-    <button type="submit">Criar tarefa</button>
+    <todo-input
+      placeholder="Digite sua terefa"
+      @update="update"
+      :value="todo.title"
+    />
+    <todo-button type="submit">Criar tarefa</todo-button>
   </form>
 </template>
 
 <script>
 import TodoInput from "@/components/Shared/Input.vue";
+import TodoButton from "@/components/Shared/Button.vue";
 
 export default {
   components: {
     TodoInput,
+    TodoButton,
   },
   data() {
     return {
@@ -20,27 +26,10 @@ export default {
       },
     };
   },
+  methods: {
+    update(value) {
+      this.todo.title = value;
+    },
+  },
 };
 </script>
-
-<style lang="scss" scoped>
-form {
-  button {
-    background-color: #2d6cea;
-    color: #e1e8ef;
-    border: none;
-    border-radius: 1rem;
-    padding: 0.6rem 1.5rem;
-    margin-top: 10px;
-    width: max-content;
-    transition: all 0.3s linear;
-    outline: none;
-    cursor: pointer;
-    box-shadow: 0 0 5px 3px rgba(45, 108, 234, 0.3);
-
-    &:hover {
-      background-color: #1b5cdc;
-    }
-  }
-}
-</style>
