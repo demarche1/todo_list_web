@@ -64,6 +64,8 @@ export default {
      * @param { todo } todo
      */
     async createTodo(todo) {
+      this.todos.push(todo);
+
       await api("/", "POST", todo);
 
       todo.title = "";
@@ -83,9 +85,11 @@ export default {
      * @param { string } id
      */
     async deleteTodo(id) {
+      this.todos = this.todos.filter((todo) => todo.id !== id);
+
       await api(`/${id}`, "DELETE");
 
-      this.todos = this.todos.filter((todo) => todo.id !== id);
+      await this.getTodos();
     },
     /**
      * Show and hidden edit modal.

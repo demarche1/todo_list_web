@@ -3,6 +3,11 @@
     <modal-title>Editar Tarefa</modal-title>
     <form @submit.prevent="onTodoSaved(todo)">
       <modal-input :value="todo.title" @update="update" />
+      <textarea
+        v-model="todo.description"
+        placeholder="Dê uma descrição para sua tarefa"
+        class="description"
+      />
       <modal-button type="submit">Salvar</modal-button>
     </form>
   </div>
@@ -47,3 +52,17 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+textarea {
+  width: calc(100% - 1.5rem);
+  height: 168px;
+  margin-top: 1rem;
+  border: 1px solid #e1e8ef8c;
+  border-radius: 1rem;
+  padding: 0.6rem;
+  background-color: #18243c;
+  color: #e1e8ef;
+  outline: none;
+}
+</style>

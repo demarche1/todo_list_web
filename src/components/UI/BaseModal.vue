@@ -38,7 +38,8 @@ export default {};
 .close-button {
   background: unset;
   outline: unset;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid #e1e8ef8c;
+  border-radius: 5px;
   float: right;
   cursor: pointer;
 }
